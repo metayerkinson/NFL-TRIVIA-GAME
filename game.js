@@ -1,71 +1,99 @@
 const questions = [
-    {
-      question: "What year did the miami Dolphins went underdeafted and won 17 Games and a superbowl? ",
-      choices: ["1960", "1990", "1970", "1980"],
-      answer: "1970"
-    },
-    {
-      question: "How many teams play in the NFL?",
-      choices: ["16", "32", "25", "31"],
-      answer: "32 Teams"
-    },
-    {
-      question: "How many head coaches are there in the NFL?",
-      choices: ["36", "22", "25", "32"],
-      answer: "32"
-    },
-    {
-      question: " How many Superbowls have Miami Dolphins win?",
-      choices: ["6", "2", "5", "12"],
-      answer: "2"
-    },
-    {
-      question: "How many Superbowls have the Bufalo Bills win?",
-      choices: ["6", "2", "1", "0"],
-      answer: "0"
-    }
-  ];
-  
+  {
+    question:
+      "What year did the miami Dolphins went underdeafted and won 17 Games plus a superbowl? ",
+    choices: ["1972", "1960", "1792", "1971"],
+    answer: "1972",
+  },
+  {
+    question: "How many teams play in the NFL?",
+    choices: ["70", "60", "17", "32"],
+    answer: "32 Teams",
+  },
+  {
+    question: "How many head coaches are there in the NFL?",
+    choices: ["10", "60", "17", "32"],
+    answer: "32",
+  },
+  {
+    question: " How many Superbowls have Miami Dolphins win?",
+    choices: ["0", "6", "1", "2"],
+    answer: "2",
+  },
+  {
+    question: "How many Superbowls have the Bufalo Bills win?",
+    choices: ["0", "6", "1", "2"],
+    answer: "0",
+  },
+];
 
-  let score = 0;
-  let currentQuestion = 0;
-  
-  // Display the current question on the page
-  function displayQuestion() {
-    document.getElementById("question").innerHTML = questions[currentQuestion].question;
+let score = 0;
+let currentQuestion = 0;
+let timeInterval;
+let timeLeft = 60;
+// Display the current question on the page
+function displayQuestion() {
+  document.getElementById("question").innerHTML =
+    questions[currentQuestion].question;
+  let choicesHTML = "";
+  for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
+    choicesHTML += `<label><input type="radio" name="answer" value="${questions[currentQuestion].choices[i]}">${questions[currentQuestion].choices[i]}</label><br>`;
   }
-  
-  // Check the user's answer and update the score
-  function checkAnswer() {
-    const answer = document.getElementById("answer").value;
-    if (answer.toLowerCase() === questions[currentQuestion].answer.toLowerCase()) {
-      score++;
-      document.getElementById("score").innerHTML = "Score: " + score;
-    }
-    currentQuestion++;
-    if (currentQuestion >= questions.length) {
-      endGame();
+  document.getElementById("choices").innerHTML = choicesHTML;
+}
+function startTimer() {
+  timeInterval = setInterval(function () {
+    if (timeLeft > 0) {
+      timeLeft--;
+      document.getElementById("timer").innerHTML =
+        "Time Left: " + timeLeft + " seconds";
     } else {
-      displayQuestion();
-      document.getElementById("answer").value = "";
+      clearInterval(timeInterval);
+      document.getElementById("timer").innerHTML = "Time's up!";
+      endGame();
     }
+  }, 1000);
+}
+// Stop the countdown timer
+function stopTimer() {
+  clearInterval(timeInterval);
+  timeLeft = 60;
+  document.getElementById("timer").innerHTML =
+    "Time Left: " + timeLeft + " seconds";
+}
+
+// Check the user's answer and update the score
+function checkAnswer() {
+  let pickAnswer = document.querySelector('input[name="answer"]:checked').value;
+  if (pickAnswer === questions[currentQuestion].answer) {
+    score++;
   }
-  
-  // When the game  finished show  the final score
-  function endGame() {
-    document.getElementById("question").innerHTML = "Game Over!";
-    document.getElementById("answer").style.display = "none";
-    document.getElementById("score").innerHTML = "Final Score: " + score;
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    updateQuestion();
+  } else {
+    endGame();
   }
-  
-  // Resart the game to play again
-  function playAgain() {
-    score = 0;
-    currentQuestion = 0;
-    document.getElementById("answer").style.display = "block";
-    document.getElementById("score").innerHTML = "Score: " + score;
-    displayQuestion();
-  }
-  
-  // place question screen 
+}
+
+// When the game  finished show  the final score
+function endGame() {
+  stopTimer();
+  document.getElementById("question").innerHTML = "Game Over";
+  document.getElementById("choices").innerHTML =
+    "Your score: " + score + " out of " + questions.length;
+}
+
+// Resart the game to play again
+function playAgain() {
+  score = 0;
+  currentQuestion = 0;
+  document.getElementById("answer").style.display = "block";
+  document.getElementById("score").innerHTML = "Score: " + score;
   displayQuestion();
+}
+
+// place question screen
+displayQuestion();
+updateQuestion();
+startTimer();
