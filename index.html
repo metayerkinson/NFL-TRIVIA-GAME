@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="game.css"> -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="game.css" />
     <title>NFL Trivia Game</title>
-</head>
-<body>
-    <h1> NFL Trivia Game</h1> 
-  <div id="Gamequestions">
-    <input id="text" id="answer">
-    <!-- added submit button -->
-    <button onclick="CheckAnswer()">Submit</button>
-    <div id="score"></div>
-    <!-- added plsay again submit button -->
-    <button onclick="playagain()"> Play Again</button>
-    
-
-  </div> 
-</body>
-<script></script>
-<script src="game.js"></script>
+  </head>
+  <body>
+    <div id="gameday">
+      <h1>Kinson's NFL Trivia Game</h1>
+      <div id="question"></div>
+      <div id="choices"></div>
+      <input type="text" id="answer" />
+      <button onclick="checkAnswer()">Submit</button>
+      <div id="score"></div>
+      <button onclick="playAgain()">Play Again</button>
+      <script src="ft.js"></script>
+    </div>
+  </body>
+  <script></script>
+  <script src="game.js"></script>
 </html>

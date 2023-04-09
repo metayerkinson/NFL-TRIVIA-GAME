@@ -1,7 +1,10 @@
 
-body{
-    background-color: #000000;
+body{ 
+    background-color: ;
 }
 
-h1{color: aliceblue;}
+h1{color: red}
+#question{ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-style: normal;
+font: color white}
 
+#gameday{ justify-content: right;}
