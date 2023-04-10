@@ -8,16 +8,29 @@
     <title>NFL Trivia Game</title>
   </head>
   <body>
-    <div id="gameday">
-      <h1>Kinson's NFL Trivia Game</h1>
-      <div id="question"></div>
-	<div id="choices"></div>
-	<div id="timer">Time Left: 60 seconds</div>
-	<button onclick="checkAnswer()">Submit Answer</button>
-      <div id="score">Score:</div>
-      <button onclick="playAgain()">Play Again</button>
-      <script src="ft.js"></script>
+    <section class id="gameday">
+
+      <div id="all">
+        <h1>Kinson's NFL Trivia Game</h1>
+        <div id="timer">Time Left: 60 seconds</div>
+        <div id="entername"><label for="name">Enter your name:</label></div>
+        <section>
+     <div id="textbox"><input type="text" id="name" name="name" /><br /><br /></div>
+    </section>
+     <div id="question"></div>
+     <div id="choices"></div>
+     <div id="button">
+     <button onclick="checkAnswer()">Submit Answer</button>
+     <div id="score"></div>
     </div>
+    <div id="play"> <button onclick="playAgain()">Play Again</button></div>
+    
+     
+      
+
+    </section>
+   
+  
   </body>
   <script></script>
   <script src="game.js"></script>
